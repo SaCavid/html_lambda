@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+    environment:
+      AWS_LAMBDA_FUNCTION_NAME: "main"
+    ports:
+      - "9000:8080"
+    restart: unless-stopped
+
