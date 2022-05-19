@@ -8,8 +8,8 @@ import (
 	"context"
 	"github.com/SaCavid/router"
 	"github.com/SaCavid/router/models"
-	"github.com/aws/aws-lambda-go/lambda"
-	"html_in_lambda/handler"
+	"html_lambda/handler"
+	"log"
 )
 
 func HandleRequest(ctx context.Context, event models.LambdaRequest) (models.LambdaResponse, error) {
@@ -30,14 +30,14 @@ func HandleRequest(ctx context.Context, event models.LambdaRequest) (models.Lamb
 }
 
 func main() {
-	lambda.Start(HandleRequest)
-	//event := models.LambdaRequest{}
-	//event.RequestContext.Http.Method = "GET"
-	//event.RequestContext.Http.Path = "/html"
-	//str, err := HandleRequest(context.Background(), event)
-	//if err != nil {
-	//	log.Println(err)
-	//	return
-	//}
-	//log.Println(str)
+	//lambda.Start(HandleRequest)
+	event := models.LambdaRequest{}
+	event.RequestContext.Http.Method = "GET"
+	event.RequestContext.Http.Path = "/html"
+	str, err := HandleRequest(context.Background(), event)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	log.Println(str)
 }
